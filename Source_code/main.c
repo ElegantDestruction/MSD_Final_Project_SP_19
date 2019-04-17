@@ -6,6 +6,7 @@ a LCD driver IC controller
 #include "gpio_defs.h"
 #include "LCD_4bit.h"
 #include "Lab7_Header.h"
+
 void delayMs(int n);
 void delayUs(int n);
 void keypad_init(void);
@@ -53,7 +54,7 @@ int main (void) {
 	Set_Cursor(0,1);
 	Print_LCD("Number 5");
 	
-	Delay(5000000);
+	delayUs(5000);
 	
 	Set_Cursor(0,1);
 	Print_LCD("Number 6");
