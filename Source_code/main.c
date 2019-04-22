@@ -45,6 +45,7 @@ void LCD_Example(void) {
 int main (void) {
 			
 		//Run example code
+<<<<<<< Updated upstream
 		//LCD_Example();
 	//Let's try making changes to display content
 	Init_LCD();
@@ -60,6 +61,10 @@ int main (void) {
 	Set_Cursor(0,1);
 	Print_LCD("Number 6");
 	
+=======
+		LCD_Example();
+		
+>>>>>>> Stashed changes
 	    unsigned char key;
     
     keypad_init();
