@@ -387,19 +387,9 @@
               <FilePath>.\Source_code\delay.c</FilePath>
             </File>
             <File>
-              <FileName>delay.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Source_code\delay.h</FilePath>
-            </File>
-            <File>
               <FileName>gpio_defs.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Source_code\gpio_defs.h</FilePath>
-            </File>
-            <File>
-              <FileName>Lab7_Header.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Source_code\Lab7_Header.h</FilePath>
             </File>
             <File>
               <FileName>LCD_4bit.c</FileName>

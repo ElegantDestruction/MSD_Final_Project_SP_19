@@ -1,10 +1,10 @@
-#ifndef GPIO_DEFS_H
+/*#ifndef GPIO_DEFS_H
 #define GPIO_DEFS_H
 
 //Define a macro for left shifting operation;
 // UL: Unsigned Long (data type)
 
-#define MASK(x) (1UL << (x))
+
 
 // Freedom KL25Z LEDs
 #define RED_LED_POS (18)		// on port B
@@ -12,3 +12,4 @@
 #define BLUE_LED_POS (1)		// on port D
 
 #endif
+*/
