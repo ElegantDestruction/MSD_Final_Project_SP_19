@@ -55,7 +55,7 @@ int main (void) {
 	Set_Cursor(0,1);
 	Print_LCD("Number 5");
 	
-	delayUs(5000);
+	delayUs(5000000);
 	
 	Set_Cursor(0,1);
 	Print_LCD("Number 6");
