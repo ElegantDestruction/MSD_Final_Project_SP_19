@@ -1,5 +1,4 @@
 --cpu Cortex-M0+
-".\objects\delay.o"
 ".\objects\lcd_4bit.o"
 ".\objects\main.o"
 ".\objects\startup_mkl25z4.o"

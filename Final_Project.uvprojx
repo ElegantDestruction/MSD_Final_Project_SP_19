@@ -382,11 +382,6 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Source_code\delay.c</FilePath>
-            </File>
-            <File>
               <FileName>gpio_defs.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Source_code\gpio_defs.h</FilePath>
