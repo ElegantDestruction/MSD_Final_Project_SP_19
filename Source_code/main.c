@@ -6,6 +6,7 @@ a LCD driver IC controller
 #include "gpio_defs.h"
 #include "LCD_4bit.h"
 #include "Lab7_Header.h"
+#include "delay.h"
 
 void delayMs(int n);
 void delayUs(int n);
@@ -77,11 +78,11 @@ int main (void) {
 				PTB->PDOR = 0xFFFFFFFF;				/* turn off red LED*/
 
 		}		
-		if(key == '4')            /* if key == 'E' */
+		if(key == 'E')            /* if key == 'E' */
 		{
 				PTB->PDOR  = ~ MASK(GREEN_LED_POS);				/* turn on green LED*/
 		}	
-		if(key == '5')            /* if key == 'D' */
+		if(key == 'D')            /* if key == 'D' */
 		{
 					PTB->PDOR = 0xFFFFFFFF;				/* turn off green LED*/
 		}						   

@@ -397,11 +397,6 @@
               <FilePath>.\Source_code\gpio_defs.h</FilePath>
             </File>
             <File>
-              <FileName>Lab_7.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Source_code\Lab_7.c</FilePath>
-            </File>
-            <File>
               <FileName>Lab7_Header.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Source_code\Lab7_Header.h</FilePath>
