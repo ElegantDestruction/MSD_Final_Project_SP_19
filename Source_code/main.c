@@ -25,7 +25,7 @@ void Delay(volatile unsigned int time_del) {
 /*------------------------------------------------------------------------------
 	Example for LCD interface
 	*------------------------------------------------------------------------------*/
-void LCD_Example(void) {
+/*void LCD_Example(void) {
 	
 	Init_LCD();				//Call initial setup function
 	Clear_LCD();			//Ensure LCD is clear before beginning
@@ -38,7 +38,7 @@ void LCD_Example(void) {
 	Set_Cursor(0,1);
 	Print_LCD("for Jacob :/"); //Must have 16 letter space
 }
-
+*/
 /*----------------------------------------------------------------------------
   MAIN function
  *----------------------------------------------------------------------------*/
@@ -46,32 +46,60 @@ int main (void) {
 			
 		//Run example code
 
-		LCD_Example();
+		//LCD_Example();
 	    unsigned char key;
     
     keypad_init();
     LED_init();
+		Init_LCD();				//Call initial setup function
+		Clear_LCD();			//Ensure LCD is clear before beginning
+	
+		PTD->PDOR = 0xFFFFFFFF;
 
     while(1)
     {
         key = keypad_getkey();
 		if(key == '1')			/* if key == '1' */
 		{
+				Init_LCD();				//Call initial setup function
+				Clear_LCD();			//Ensure LCD is clear before beginning
 				PTB->PDOR  = ~ MASK(RED_LED_POS);		/* turn on red LED*/
+				Set_Cursor(0,0);
+				Print_LCD("Red Light");
+				Set_Cursor(0,1);
+				Print_LCD("ON ");
 
 		}		
 		if(key == '2')		    /* if key == '2' */
 		{
+				Init_LCD();				//Call initial setup function
+				Clear_LCD();			//Ensure LCD is clear before beginning
 				PTB->PDOR = 0xFFFFFFFF;				/* turn off red LED*/
+				Set_Cursor(0,0);
+				Print_LCD("Red Light");
+				Set_Cursor(0,1);
+				Print_LCD("OFF");
 
 		}		
 		if(key == 'E')            /* if key == 'E' */
 		{
+				Init_LCD();				//Call initial setup function
+				Clear_LCD();			//Ensure LCD is clear before beginning
 				PTB->PDOR  = ~ MASK(GREEN_LED_POS);				/* turn on green LED*/
+				Set_Cursor(0,0);
+				Print_LCD("Green Light");
+				Set_Cursor(0,1);
+				Print_LCD("ON ");
 		}	
 		if(key == 'D')            /* if key == 'D' */
 		{
+					Init_LCD();				//Call initial setup function
+					Clear_LCD();			//Ensure LCD is clear before beginning			
 					PTB->PDOR = 0xFFFFFFFF;				/* turn off green LED*/
+					Set_Cursor(0,0);
+					Print_LCD("Green Light");
+					Set_Cursor(0,1);
+					Print_LCD("OFF");
 		}						   
     }
 
