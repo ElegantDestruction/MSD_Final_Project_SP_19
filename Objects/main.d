@@ -9,5 +9,4 @@
 .\objects\main.o: Source_code\gpio_defs.h
 .\objects\main.o: Source_code\LCD_4bit.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL25Z4.H
-.\objects\main.o: Source_code\Lab7_Header.h
 .\objects\main.o: Source_code\delay.h

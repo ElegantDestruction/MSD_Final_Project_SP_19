@@ -5,7 +5,6 @@ a LCD driver IC controller
 #include <MKL25Z4.H>
 #include "gpio_defs.h"
 #include "LCD_4bit.h"
-#include "Lab7_Header.h"
 #include "delay.h"
 
 void delayMs(int n);
