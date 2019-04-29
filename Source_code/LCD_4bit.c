@@ -1,7 +1,6 @@
 #include "LCD_4bit.h"
-#include "delay.h"
 #include <stdint.h>
-
+#include "gpio_defs.h"
 
 //with 4-bit data, we need to break 
 //down to two 4-bit operations, upper

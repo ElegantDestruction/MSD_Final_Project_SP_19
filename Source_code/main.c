@@ -5,7 +5,6 @@ a LCD driver IC controller
 #include <MKL25Z4.H>
 #include "gpio_defs.h"
 #include "LCD_4bit.h"
-#include "Lab7_Header.h"
 #include "delay.h"
 
 void delayMs(int n);
@@ -61,7 +60,6 @@ int main (void) {
         key = keypad_getkey();
 		if(key == '1')			/* if key == '1' */
 		{
-				Init_LCD();				//Call initial setup function
 				Clear_LCD();			//Ensure LCD is clear before beginning
 				PTB->PDOR  = ~ MASK(RED_LED_POS);		/* turn on red LED*/
 				Set_Cursor(0,0);
@@ -72,7 +70,6 @@ int main (void) {
 		}		
 		if(key == '2')		    /* if key == '2' */
 		{
-				Init_LCD();				//Call initial setup function
 				Clear_LCD();			//Ensure LCD is clear before beginning
 				PTB->PDOR = 0xFFFFFFFF;				/* turn off red LED*/
 				Set_Cursor(0,0);
@@ -83,7 +80,6 @@ int main (void) {
 		}		
 		if(key == 'E')            /* if key == 'E' */
 		{
-				Init_LCD();				//Call initial setup function
 				Clear_LCD();			//Ensure LCD is clear before beginning
 				PTB->PDOR  = ~ MASK(GREEN_LED_POS);				/* turn on green LED*/
 				Set_Cursor(0,0);
@@ -93,7 +89,6 @@ int main (void) {
 		}	
 		if(key == 'D')            /* if key == 'D' */
 		{
-					Init_LCD();				//Call initial setup function
 					Clear_LCD();			//Ensure LCD is clear before beginning			
 					PTB->PDOR = 0xFFFFFFFF;				/* turn off green LED*/
 					Set_Cursor(0,0);

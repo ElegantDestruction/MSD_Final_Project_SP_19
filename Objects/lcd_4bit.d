@@ -7,4 +7,4 @@
 .\objects\lcd_4bit.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h
 .\objects\lcd_4bit.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h
 .\objects\lcd_4bit.o: .\RTE\Device\MKL25Z128xxx4\system_MKL25Z4.h
-.\objects\lcd_4bit.o: Source_code\delay.h
+.\objects\lcd_4bit.o: Source_code\gpio_defs.h
