@@ -7,10 +7,6 @@
 
 
 
-
-#include <stdio.h>
-
-
 void delayMs(int n);
 void delayUs(int n);
 void keypad_init(void);
@@ -153,10 +149,10 @@ void set_timer(void) {
 	
 	//Grab second digit of seconds
 	not_done = 1;
-	Clear_LCD();
+
 	Set_Cursor(0,0);
 	Print_LCD("Enter secs (10s)");
-	Set_Cursor(0,1);
+	Set_Cursor(1,0);
 	Print_LCD(strcat("  :",(char*)secs));
 	while (not_done) {
 		key = keypad_getkey();
@@ -172,7 +168,7 @@ void set_timer(void) {
 	Set_Cursor(0,0);
 	Print_LCD("Enter mins (1s)");
 	Set_Cursor(0,1);
-	Print_LCD(strcat("  :",(char*)secs));
+	Print_LCD(strcat("  : ",(char*)secs));
 	while(not_done){
 		key = keypad_getkey();
 		if (is_num(key,9)){
