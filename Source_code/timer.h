@@ -8,8 +8,8 @@
 // intentionally "stuck" until the conditions to exit the state
 // are met.
 
-uint8_t mins = 0;
-uint8_t secs = 0;
+int mins = 0;
+int secs = 0;
 
 void set_timer(void);
 void timer_countdown(void);

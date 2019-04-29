@@ -1,18 +1,14 @@
 #include <MKL25Z4.H>
 #include <stdint.h>
 #include <string.h>
+#include <stdlib.h>
 #include "timer.h"
 #include "LCD_4bit.h"
 
-void delayUs(int n)
-{
-    int i; int j;
-    for(i = 0 ; i < n; i++) {
-        for(j = 0; j < 5; j++) ;
-    }
-}
 
 
+
+#include <stdio.h>
 
 
 void delayMs(int n);
@@ -27,6 +23,17 @@ void Delay(volatile unsigned int time_del) {
 		;
 	}
 }
+
+void delayUs(int n)
+{
+    int i; int j;
+    for(i = 0 ; i < n; i++) {
+        for(j = 0; j < 5; j++) ;
+    }
+}
+
+
+
 
 
 /*----------------------------------------------------------------------------
@@ -161,7 +168,7 @@ void set_timer(void) {
 	
 	//Grab first minute digit
 	not_done = 1;
-	Clear_LCD();
+	
 	Set_Cursor(0,0);
 	Print_LCD("Enter mins (1s)");
 	Set_Cursor(0,1);
@@ -180,7 +187,7 @@ void set_timer(void) {
 	Set_Cursor(0,0);
 	Print_LCD("Enter mins (10s)");
 	Set_Cursor(0,1);
-	Print_LCD(strcat((char*)mins,strcat(":",(unsigned char*)secs)));
+	Print_LCD(strcat((char*)mins,strcat(":",(char*)secs)));
 	while(not_done){
 		key = keypad_getkey();
 		if (is_num(key,5)){
@@ -302,4 +309,3 @@ int main (void) {
 
     set_timer();
 }
-
