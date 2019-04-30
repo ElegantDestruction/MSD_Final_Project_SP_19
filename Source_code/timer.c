@@ -1,6 +1,6 @@
 #include <MKL25Z4.H>
-#include <stdint.h>
-#include <string.h>
+//#include <stdint.h>
+//#include <string.h>
 #include <stdlib.h>
 #include "timer.h"
 #include "LCD_4bit.h"
@@ -11,6 +11,9 @@ void delayMs(int n);
 void delayUs(int n);
 void keypad_init(void);
 char keypad_getkey(void);
+void lcd_printInt(unsigned int number);
+void lcd_print00(unsigned char number);
+char*	itoa(unsigned int change_me);
 
 
 /* create a delay function */
@@ -74,10 +77,6 @@ void keypad_init(void)
  * can decide which key is pressed.
  */
 
-
-
-
-
 char keypad_getkey(void)
 {
     int row, col;
@@ -128,6 +127,12 @@ char keypad_getkey(void)
     return 0;   /* just to be safe */
 }
 
+
+
+/*-----------------------------------------------------------------------------
+Timer Code
+-------------------------------------------------------------------------------*/
+
 void set_timer(void) {
 	// Variable to end loop
 	int not_done = 1;
@@ -153,7 +158,8 @@ void set_timer(void) {
 	Set_Cursor(0,0);
 	Print_LCD("Enter secs (10s)");
 	Set_Cursor(1,0);
-	Print_LCD(strcat("  :",(char*)secs));
+	Print_LCD("  :");
+	lcd_print00(secs);
 	while (not_done) {
 		key = keypad_getkey();
 		if (is_num(key,5)) {
@@ -168,7 +174,8 @@ void set_timer(void) {
 	Set_Cursor(0,0);
 	Print_LCD("Enter mins (1s)");
 	Set_Cursor(0,1);
-	Print_LCD(strcat("  : ",(char*)secs));
+	Print_LCD("  : ");
+	lcd_print00(secs);
 	while(not_done){
 		key = keypad_getkey();
 		if (is_num(key,9)){
@@ -183,7 +190,9 @@ void set_timer(void) {
 	Set_Cursor(0,0);
 	Print_LCD("Enter mins (10s)");
 	Set_Cursor(0,1);
-	Print_LCD(strcat((char*)mins,strcat(":",(char*)secs)));
+	lcd_print00(mins);
+	Print_LCD(":");
+	lcd_print00(secs);
 	while(not_done){
 		key = keypad_getkey();
 		if (is_num(key,5)){
@@ -208,7 +217,9 @@ void timer_countdown(void) {
 		Set_Cursor(0,0);
 		Print_LCD("Timer Active");
 		Set_Cursor(0,1);
-		Print_LCD(strcat((char*)mins,strcat(":",(char*)secs)));
+		lcd_print00(mins);
+		Print_LCD(":");
+		lcd_print00(secs);
 		
 		if (secs == 0) {
 			mins -= 1;
@@ -262,6 +273,9 @@ void timer_complete(void) {
 	
 }
 
+/*-------------------------------------------------------------------------------
+	Management Functions
+--------------------------------------------------------------------------------*/
 
 // This function can be passed a keypress, and will determine
 // if the keypress is a valid number within range of count.
@@ -282,9 +296,110 @@ bool is_num(unsigned char keypress, int count) {
 	return is_num;
 	
 }
-/* delay n microseconds
- * The CPU core clock is set to MCGFLLCLK at 41.94 MHz in SystemInit().
- */
+
+ void lcd_printInt(unsigned int number)
+ {
+	char* str;
+	str = itoa(number);
+	Print_LCD(str);
+ }
+
+ void lcd_print00(unsigned char number)
+ {
+	char* str;
+	str = itoa(number);
+	
+	if (number < 10)
+	{
+		str[1] = str[0];
+		str[0] = '0';
+	}
+	str[2] = 0;
+	Print_LCD(str);
+ }
+
+char*	itoa(unsigned int change_me){
+	char* result;// = malloc(sizeof(char[2]));
+	result = (char *) malloc(sizeof(char[2]));
+	unsigned int temp;
+	temp = change_me%10;
+	
+	switch(temp){
+		case 0 :
+			result[0] = '0';
+			break;
+		case 1 :
+			result[0] = '1';
+			break;
+		case 2 :
+			result[0] = '2';
+			break;
+		case 3 :
+			result[0] = '3';
+			break;
+		case 4 :
+			result[0] = '4';
+			break;
+		case 5 :
+			result[0] = '5';
+			break;
+		case 6 :
+			result[0] = '6';
+			break;
+		case 7 :
+			result[0] = '7';
+			break;
+		case 8 : 
+			result[0] = '8';
+			break;
+		case 9 :
+			result[0] = '9';
+			break;
+		default :
+			result[0] = 'E';
+			break;
+	}
+	
+	temp = change_me - change_me%10;
+	
+	switch(temp){
+		case 0 :
+			result[1] = '0';
+			break;
+		case 1 :
+			result[1] = '1';
+			break;
+		case 2 :
+			result[1] = '2';
+			break;
+		case 3 :
+			result[1] = '3';
+			break;
+		case 4 :
+			result[1] = '4';
+			break;
+		case 5 :
+			result[1] = '5';
+			break;
+		case 6 :
+			result[1] = '6';
+			break;
+		case 7 :
+			result[1] = '7';
+			break;
+		case 8 : 
+			result[1] = '8';
+			break;
+		case 9 :
+			result[1] = '9';
+			break;
+		default :
+			result[1] = 'E';
+			break;
+	}
+	
+	return result;
+}
 
 /*----------------------------------------------------------------------------
   MAIN function
