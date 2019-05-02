@@ -20,7 +20,11 @@ Section Cross References
     lcd_4bit.o(i.lcd_write_data) refers to lcd_4bit.o(i.wait_while_busy) for wait_while_busy
     lcd_4bit.o(i.lcd_write_data) refers to lcd_4bit.o(i.lcd_write_4bit) for lcd_write_4bit
     lcd_4bit.o(i.wait_while_busy) refers to lcd_4bit.o(i.lcd_read_status) for lcd_read_status
+<<<<<<< HEAD
     timer.o(i.getDecStr) refers to aeabi_sdiv.o(.text) for __aeabi_uidivmod
+=======
+    timer.o(i.itoa) refers to aeabi_sdiv.o(.text) for __aeabi_idivmod
+>>>>>>> master
     timer.o(i.keypad_getkey) refers to rt_memcpy.o(.emb_text) for __aeabi_memcpy4
     timer.o(i.keypad_getkey) refers to timer.o(i.delayUs) for delayUs
     timer.o(i.lcd_print00) refers to timer.o(i.getDecStr) for getDecStr
@@ -202,14 +206,25 @@ Removing Unused input sections from the image.
     Removing lcd_4bit.o(.revsh_text), (4 bytes).
     Removing timer.o(.rev16_text), (4 bytes).
     Removing timer.o(.revsh_text), (4 bytes).
+<<<<<<< HEAD
     Removing timer.o(i.lcd_print00), (42 bytes).
+=======
+    Removing timer.o(i.itoa), (100 bytes).
+    Removing timer.o(i.pause_timer), (112 bytes).
+    Removing timer.o(i.timer_complete), (88 bytes).
+    Removing timer.o(i.timer_countdown), (152 bytes).
+>>>>>>> master
     Removing system_mkl25z4.o(.rev16_text), (4 bytes).
     Removing system_mkl25z4.o(.revsh_text), (4 bytes).
     Removing system_mkl25z4.o(i.SystemCoreClockUpdate), (400 bytes).
     Removing system_mkl25z4.o(.data), (4 bytes).
     Removing system_mkl25z4.o(i.__ARM_common_switch8), (28 bytes).
 
+<<<<<<< HEAD
 10 unused section(s) (total 498 bytes) removed from the image.
+=======
+13 unused section(s) (total 908 bytes) removed from the image.
+>>>>>>> master
 
 ==============================================================================
 
@@ -569,6 +584,7 @@ Memory Map of the image
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
+<<<<<<< HEAD
     0x00000000   0x00000000   0x000000c0   Data   RO          231    RESET               startup_mkl25z4.o
     0x000000c0   0x000000c0   0x00000008   Code   RO          291  * !!!main             c_p.l(__main.o)
     0x000000c8   0x000000c8   0x0000003c   Code   RO          460    !!!scatter          c_p.l(__scatter.o)
@@ -667,15 +683,112 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x1ffff000   0x00001000   0x0000000d   Data   RW          128    .data               timer.o
+=======
+    0x00000000   0x00000000   0x000000c0   Data   RO          212    RESET               startup_mkl25z4.o
+    0x000000c0   0x000000c0   0x00000008   Code   RO          274  * !!!main             c_p.l(__main.o)
+    0x000000c8   0x000000c8   0x0000003c   Code   RO          443    !!!scatter          c_p.l(__scatter.o)
+    0x00000104   0x00000104   0x0000001a   Code   RO          445    !!handler_copy      c_p.l(__scatter_copy.o)
+    0x0000011e   0x0000011e   0x00000002   PAD
+    0x00000120   0x00000120   0x0000001c   Code   RO          447    !!handler_zi        c_p.l(__scatter_zi.o)
+    0x0000013c   0x0000013c   0x00000002   Code   RO          312    .ARM.Collect$$libinit$$00000000  c_p.l(libinit.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          326    .ARM.Collect$$libinit$$00000002  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          328    .ARM.Collect$$libinit$$00000004  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          331    .ARM.Collect$$libinit$$0000000A  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          333    .ARM.Collect$$libinit$$0000000C  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          335    .ARM.Collect$$libinit$$0000000E  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          338    .ARM.Collect$$libinit$$00000011  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          340    .ARM.Collect$$libinit$$00000013  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          342    .ARM.Collect$$libinit$$00000015  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          344    .ARM.Collect$$libinit$$00000017  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          346    .ARM.Collect$$libinit$$00000019  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          348    .ARM.Collect$$libinit$$0000001B  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          350    .ARM.Collect$$libinit$$0000001D  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          352    .ARM.Collect$$libinit$$0000001F  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          354    .ARM.Collect$$libinit$$00000021  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          356    .ARM.Collect$$libinit$$00000023  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          358    .ARM.Collect$$libinit$$00000025  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          362    .ARM.Collect$$libinit$$0000002C  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          364    .ARM.Collect$$libinit$$0000002E  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          366    .ARM.Collect$$libinit$$00000030  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          368    .ARM.Collect$$libinit$$00000032  c_p.l(libinit2.o)
+    0x0000013e   0x0000013e   0x00000002   Code   RO          369    .ARM.Collect$$libinit$$00000033  c_p.l(libinit2.o)
+    0x00000140   0x00000140   0x00000002   Code   RO          400    .ARM.Collect$$libshutdown$$00000000  c_p.l(libshutdown.o)
+    0x00000142   0x00000142   0x00000000   Code   RO          426    .ARM.Collect$$libshutdown$$00000002  c_p.l(libshutdown2.o)
+    0x00000142   0x00000142   0x00000000   Code   RO          428    .ARM.Collect$$libshutdown$$00000004  c_p.l(libshutdown2.o)
+    0x00000142   0x00000142   0x00000000   Code   RO          431    .ARM.Collect$$libshutdown$$00000007  c_p.l(libshutdown2.o)
+    0x00000142   0x00000142   0x00000000   Code   RO          434    .ARM.Collect$$libshutdown$$0000000A  c_p.l(libshutdown2.o)
+    0x00000142   0x00000142   0x00000000   Code   RO          436    .ARM.Collect$$libshutdown$$0000000C  c_p.l(libshutdown2.o)
+    0x00000142   0x00000142   0x00000000   Code   RO          439    .ARM.Collect$$libshutdown$$0000000F  c_p.l(libshutdown2.o)
+    0x00000142   0x00000142   0x00000002   Code   RO          440    .ARM.Collect$$libshutdown$$00000010  c_p.l(libshutdown2.o)
+    0x00000144   0x00000144   0x00000000   Code   RO          276    .ARM.Collect$$rtentry$$00000000  c_p.l(__rtentry.o)
+    0x00000144   0x00000144   0x00000000   Code   RO          282    .ARM.Collect$$rtentry$$00000002  c_p.l(__rtentry2.o)
+    0x00000144   0x00000144   0x00000006   Code   RO          294    .ARM.Collect$$rtentry$$00000004  c_p.l(__rtentry4.o)
+    0x0000014a   0x0000014a   0x00000000   Code   RO          284    .ARM.Collect$$rtentry$$00000009  c_p.l(__rtentry2.o)
+    0x0000014a   0x0000014a   0x00000004   Code   RO          285    .ARM.Collect$$rtentry$$0000000A  c_p.l(__rtentry2.o)
+    0x0000014e   0x0000014e   0x00000000   Code   RO          287    .ARM.Collect$$rtentry$$0000000C  c_p.l(__rtentry2.o)
+    0x0000014e   0x0000014e   0x00000008   Code   RO          288    .ARM.Collect$$rtentry$$0000000D  c_p.l(__rtentry2.o)
+    0x00000156   0x00000156   0x00000002   Code   RO          317    .ARM.Collect$$rtexit$$00000000  c_p.l(rtexit.o)
+    0x00000158   0x00000158   0x00000000   Code   RO          373    .ARM.Collect$$rtexit$$00000002  c_p.l(rtexit2.o)
+    0x00000158   0x00000158   0x00000004   Code   RO          374    .ARM.Collect$$rtexit$$00000003  c_p.l(rtexit2.o)
+    0x0000015c   0x0000015c   0x00000006   Code   RO          375    .ARM.Collect$$rtexit$$00000004  c_p.l(rtexit2.o)
+    0x00000162   0x00000162   0x00000002   PAD
+    0x00000164   0x00000164   0x00000038   Code   RO          264    .emb_text           c_p.l(rt_memcpy.o)
+    0x0000019c   0x0000019c   0x00000040   Code   RO          214  * .text               startup_mkl25z4.o
+    0x000001dc   0x000001dc   0x00000018   Code   RO          262    .text               c_p.l(strcat.o)
+    0x000001f4   0x000001f4   0x00000006   Code   RO          272    .text               c_p.l(heapauxi.o)
+    0x000001fa   0x000001fa   0x0000003e   Code   RO          298    .text               c_p.l(sys_stackheap_outer.o)
+    0x00000238   0x00000238   0x00000010   Code   RO          301    .text               c_p.l(exit.o)
+    0x00000248   0x00000248   0x00000008   Code   RO          313    .text               c_p.l(libspace.o)
+    0x00000250   0x00000250   0x0000000c   Code   RO          370    .text               c_p.l(sys_exit.o)
+    0x0000025c   0x0000025c   0x00000002   Code   RO          389    .text               c_p.l(use_no_semi.o)
+    0x0000025e   0x0000025e   0x00000000   Code   RO          391    .text               c_p.l(indicate_semi.o)
+    0x0000025e   0x0000025e   0x00000012   Code   RO            3    i.Clear_LCD         lcd_4bit.o
+    0x00000270   0x00000270   0x00000010   Code   RO          117    i.Delay             timer.o
+    0x00000280   0x00000280   0x00000080   Code   RO            4    i.Init_LCD          lcd_4bit.o
+    0x00000300   0x00000300   0x00000016   Code   RO            5    i.Print_LCD         lcd_4bit.o
+    0x00000316   0x00000316   0x00000018   Code   RO            6    i.Set_Cursor        lcd_4bit.o
+    0x0000032e   0x0000032e   0x00000002   PAD
+    0x00000330   0x00000330   0x0000000c   Code   RO          223    i.SystemInit        system_mkl25z4.o
+    0x0000033c   0x0000033c   0x00000016   Code   RO          118    i.delayUs           timer.o
+    0x00000352   0x00000352   0x0000001e   Code   RO          119    i.is_num            timer.o
+    0x00000370   0x00000370   0x00000040   Code   RO          122    i.keypad_init       timer.o
+    0x000003b0   0x000003b0   0x00000034   Code   RO            7    i.lcd_init_port     lcd_4bit.o
+    0x000003e4   0x000003e4   0x0000000c   Code   RO            8    i.lcd_putchar       lcd_4bit.o
+    0x000003f0   0x000003f0   0x00000010   PAD
+    0x00000400   0x00000400   0x00000010   Code   RO          213    .ARM.__at_0x400     startup_mkl25z4.o
+    0x00000410   0x00000410   0x00000110   Code   RO          121    i.keypad_getkey     timer.o
+    0x00000520   0x00000520   0x00000070   Code   RO            9    i.lcd_read_status   lcd_4bit.o
+    0x00000590   0x00000590   0x00000044   Code   RO           10    i.lcd_write_4bit    lcd_4bit.o
+    0x000005d4   0x000005d4   0x00000020   Code   RO           11    i.lcd_write_cmd     lcd_4bit.o
+    0x000005f4   0x000005f4   0x00000020   Code   RO           12    i.lcd_write_data    lcd_4bit.o
+    0x00000614   0x00000614   0x00000024   Code   RO          123    i.main              timer.o
+    0x00000638   0x00000638   0x000001c0   Code   RO          125    i.set_timer         timer.o
+    0x000007f8   0x000007f8   0x00000012   Code   RO           13    i.wait_while_busy   lcd_4bit.o
+    0x0000080a   0x0000080a   0x00000002   PAD
+    0x0000080c   0x0000080c   0x00000020   Data   RO          441    Region$$Table       anon$$obj.o
+
+
+    Execution Region ER_RW (Exec base: 0x1ffff000, Load base: 0x0000082c, Size: 0x00000008, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x1ffff000   0x0000082c   0x00000008   Data   RW          128    .data               timer.o
+>>>>>>> master
 
 
     Execution Region ER_ZI (Exec base: 0x1ffff010, Load base: 0x00001010, Size: 0x00000160, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
+<<<<<<< HEAD
     0x1ffff010        -       0x00000060   Zero   RW          331    .bss                c_p.l(libspace.o)
     0x1ffff070        -       0x00000000   Zero   RW          230    HEAP                startup_mkl25z4.o
     0x1ffff070        -       0x00000100   Zero   RW          229    STACK               startup_mkl25z4.o
+=======
+    0x1ffff008        -       0x00000060   Zero   RW          314    .bss                c_p.l(libspace.o)
+    0x1ffff068        -       0x00000000   Zero   RW          211    HEAP                startup_mkl25z4.o
+    0x1ffff068        -       0x00000100   Zero   RW          210    STACK               startup_mkl25z4.o
+>>>>>>> master
 
 
 ==============================================================================
