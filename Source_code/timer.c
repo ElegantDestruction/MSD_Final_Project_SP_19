@@ -1,11 +1,10 @@
 #include <MKL25Z4.H>
-//#include <stdint.h>
-//#include <string.h>
 #include "timer.h"
 #include "LCD_4bit.h"
 
 
-
+//Function declarations for keypad
+//(these were imported from Lab 7 Keypad Lab)
 void delayMs(int n);
 void delayUs(int n);
 void keypad_init(void);
@@ -59,6 +58,7 @@ void keypad_init(void)
   //  PTC->PDDR &= ~(0xF << 10);  /* make PTC13-10 as inputs connected to rows */
   //  PTE->PDDR &= ~(0xF << 20);  /* make PTE23-20 as inputs connected to columns */
 }
+
 
 /*
  * This is a non-blocking function to read the keypad.
@@ -143,22 +143,30 @@ void LED_init(void)
 Timer/Stopwatch Combo Code
 -------------------------------------------------------------------------------*/
 
+/*TOP-LEVEL Function
+* mode_select is called in a loop in main, and controls flow of the program
+*/
 void mode_select(void) {
+	
 	//Variables for use
 	int not_done = 1;
 	unsigned char key;
 	
-	
+	//Print out instructions
 	Clear_LCD();
 	Print_LCD("A - Timer");
 	Set_Cursor(0,1);
 	Print_LCD("B - Stopwatch");
+	
+	//Pause for keypress
 	while (not_done) {
 		key = keypad_getkey();
 		if (key == 'A' | key == 'B') {
 			not_done = 0;
 		}
 	}
+	
+	//Based on keypress, take action
 	switch (key) {
 		case 'A' :
 			set_timer();
@@ -173,11 +181,17 @@ void mode_select(void) {
 	
 }
 
+
+/* STOPWATCH FUNCTION
+* This function controls all aspects of the stopwatch functionality
+*/
 void stopwatch(void) {
+	
 	//Variables for use
 	int not_done = 1;
 	unsigned char key;
 	
+	//Initial Print out statements
 	Clear_LCD();
 	Print_LCD("   E - Start");
 	Set_Cursor(0,1);
@@ -187,12 +201,16 @@ void stopwatch(void) {
 	lcd_printInt(mins);
 	Print_LCD(":");
 	lcd_printInt(secs);
+	
+	//Pause to wait for Start keypress 'E'
 	while (not_done) {
 		key = keypad_getkey();
 		if (key == 'E'){
 			not_done = 0;
 		}
 	}
+	
+	//Initial Printout for running timer
 	Clear_LCD();
 	Print_LCD("   F - Pause");
 	Set_Cursor(0,1);
@@ -203,13 +221,15 @@ void stopwatch(void) {
 	Print_LCD(":");
 	lcd_printInt(secs);
 	
-	//Start stopwatch
+	//Start the stopwatch
 	not_done = 1;
 	while (not_done) {
 		
+		//VERY roughly 1 second delay
 		Delay(2550000);
 		
-		if (hours == 59 && mins == 59 && secs == 59){
+		//Cascading if statements to handle time management with increments of 60
+		if (hours == 59 && mins == 59 && secs == 59){	//Consider this an overflow condition
 			not_done = 0;
 		}
 		else if (mins == 59 && secs == 59) {
@@ -225,6 +245,7 @@ void stopwatch(void) {
 			secs += 1;
 		}
 		
+		//Refresh display with new time
 		Clear_LCD();
 		Print_LCD("   F - Pause");
 		Set_Cursor(0,1);
@@ -235,8 +256,11 @@ void stopwatch(void) {
 		Print_LCD(":");
 		lcd_printInt(secs);
 		
+		//Check to see if user is pressing F to pause
 		key = keypad_getkey();
 		if (key == 'F'){
+			
+			// Set state to paused and update display
 			int paused = 1;
 			Clear_LCD();
 			Print_LCD(" E-Res, D-quit");
@@ -248,20 +272,26 @@ void stopwatch(void) {
 			Print_LCD(":");
 			lcd_printInt(secs);
 			
+			//Wait for a keypress to end the pause
 			while (paused) {
 				key = keypad_getkey();
 				if (key == 'E') {
+					//If Unpaused, set upaused state
 					paused = 0;
 				}
 				else if (key == 'D') {
+					//If quitting, set unpause and end stopwatch
 					not_done = 0;
 					paused = 0;
 				}
+				//Delay to avoid unnecessary checks
 				Delay(5000);
 			}
 		}
 	}
 	
+	//When this point is reached, the stopwatch is being exited, and
+	//the global variables must be reset
 	hours =0;
 	mins = 0;
 	secs = 0;
@@ -271,7 +301,9 @@ void stopwatch(void) {
 /*-----------------------------------------------------------------------------
 Timer Code
 -------------------------------------------------------------------------------*/
-
+/* This function is the first part of the timer code, and will allow the user to 
+* set the desired values of the timer
+*/
 void set_timer(void) {
 	// Variable to end loop
 	int not_done = 1;
@@ -397,18 +429,24 @@ void set_timer(void) {
 	Delay(750000);
 }
 
-
+/* This function is the main function of the timer module. It is 
+* responsible for decrementing the timer and handling normal operation
+*/
 void timer_countdown(void) {
-	
+	//Define necessary variables
 	restarted = 0;
 	int not_done = 1;
 	unsigned char key;
+	
+	//Main loop to iterate through timer countdown
 	while (not_done) {
+		//Check to see if user is pausing the timer, pause if so
 		key = keypad_getkey();
 		if (key == 'F'){
 			pause_timer();
 		}
 		
+		//Update display with new values
 		Clear_LCD();
 		Print_LCD("  Timer Active  ");
 		Set_Cursor(0,1);
@@ -419,6 +457,8 @@ void timer_countdown(void) {
 		Print_LCD(":");
 		lcd_printInt(secs);
 		
+		
+		//Cascading statements to handle decrementing in time (60s)
 		if (mins == 0 && secs == 0 && hours == 0){
 			not_done = 0;
 		}
@@ -434,48 +474,63 @@ void timer_countdown(void) {
 		else{
 			secs -= 1;
 		}
+		
+		//VERY roughly 1 second delay
 		Delay(2550000);
 	}
+	
+	//Call the timer_complete function only if the timer has truly reached 0 on
+	//its own
 	if (!restarted){
 		timer_complete();
 	}
 }
 
-
+/* This function will handle operations of the timer when paused */
 void pause_timer(void) {
+	//Update display with proper values
 	Clear_LCD();
 	Set_Cursor(0,0);
 	Print_LCD("Paused D - quit");
 	Set_Cursor(0,1);
 	Print_LCD("E - Resume");
 	
+	//Necessary Variables
 	int not_done = 1;
 	unsigned char key;
+	
+	//Check to see if the user is trying to exit the paused state
 	while (not_done){
 		key = keypad_getkey();
 		if (key == 'D'){
+			//If quitting, set all values to 0 to terminate timer and exit loops
 			hours = 0;
 			mins = 0;
 			secs = 0;
 			not_done = 0;
 			restarted = 1;
 		}
-		else if (key == 'E') {
+		else if (key == 'E') { //If resuming, just back out of loop
 			not_done = 0;
 		}
 	}
 	
 }
 
+/* This function basically displays that the timer has completed */
 void timer_complete(void) {
+	//Update Display
 	Clear_LCD();
 	Set_Cursor(0,0);
 	Print_LCD("Timer Complete!");
 	Set_Cursor(0,1);
 	Print_LCD("C - Continue");
 	
+	//Necessary Variables
 	int not_done = 1;
 	unsigned char key;
+	
+	//Wait for user input to exit function
 	while (not_done) {
 		key = keypad_getkey();
 		if (key == 'C'){
@@ -497,18 +552,23 @@ void timer_complete(void) {
 
 bool is_num(unsigned char keypress, int count) {
 	
+	//Necessary Variables
 	bool is_num = false;
 	int x = keypress - '0';
 	
+	//Iterate through numerics and see if they match
 	for (int i = 0; i <= count; i++){
 		if (x == i)
 			is_num = true;
 	}
 	
+	//Return true or false based on output of above loop
 	return is_num;
 	
 }
 
+
+/* Borrow functino from Dr. Liu. Will print an int type to LCD */
  void lcd_printInt(unsigned int number)
  {
 	char str[2];
@@ -516,6 +576,8 @@ bool is_num(unsigned char keypress, int count) {
 	Print_LCD(str);
  }
 
+/* Another borrowed function from Dr. Liu. Supposed to print 0s if
+*  not part of display. Unused in timer functionality */
  void lcd_print00(unsigned char number)
  {
 	char str[4];
@@ -551,15 +613,13 @@ bool is_num(unsigned char keypress, int count) {
   MAIN function
  *----------------------------------------------------------------------------*/
 int main (void) {
-		//Run example code
 
-		//LCD_Example();
-	    unsigned char key;
-    keypad_init();
-		Init_LCD();				//Call initial setup function
+		keypad_init();			//Initialize Keypad
+		Init_LCD();				//Initialize LCD
 		Clear_LCD();			//Ensure LCD is clear before beginning
-		LED_init();
+		LED_init();				//Enable LED 
 
+	//Call timer's mode_select() repeatedly
 	while (1) {
 		mode_select();
 	}
