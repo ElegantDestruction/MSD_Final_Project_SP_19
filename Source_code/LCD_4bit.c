@@ -122,7 +122,8 @@ void Init_LCD(void)
  //	Entry Mode
   lcd_write_cmd(0x06); 
  //Set DDRAM address or coursor position on display	
-  lcd_write_cmd(0x80);                 
+  lcd_write_cmd(0x80);   
+
 }
 
 void Set_Cursor(uint8_t column, uint8_t row)
@@ -131,7 +132,8 @@ void Set_Cursor(uint8_t column, uint8_t row)
 
   address = (row * 0x40) + column;
 	address |= 0x80;
-  lcd_write_cmd(address);               
+  lcd_write_cmd(address);   
+
 }
 
 void Clear_LCD(void)

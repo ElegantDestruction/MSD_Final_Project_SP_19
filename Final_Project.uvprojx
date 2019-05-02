@@ -397,11 +397,6 @@
               <FilePath>.\Source_code\LCD_4bit.h</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Source_code\main.c</FilePath>
-            </File>
-            <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Source_code\timer.c</FilePath>

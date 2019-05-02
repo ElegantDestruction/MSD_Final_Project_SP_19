@@ -22,22 +22,22 @@ Dialog DLL:      TARMCM1.DLL V1.14.0.0
  
 <h2>Project:</h2>
 C:\Users\Student\Documents\Semester 6 (Spring 2019)\AVR Microcontrollers\Final_Project\Final_Project.uvprojx
-Project File Date:  04/30/2019
+Project File Date:  05/02/2019
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'CMSIS-DAP'
 compiling timer.c...
-Source_code\timer.c(303): error:  #137: expression must be a modifiable lvalue
-  	str = itoa(number);
-Source_code\timer.c(310): error:  #137: expression must be a modifiable lvalue
-  	str = itoa(number);
-Source_code\timer.c(401): warning:  #120-D: return value type does not match the function type
-  	return result;
-Source_code\timer.c(412): warning:  #177-D: variable "key"  was declared but never referenced
+Source_code\timer.c(515): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	getDecStr(number,str,2);
+Source_code\timer.c(522): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  	getDecStr(number,str,4);
+Source_code\timer.c(557): warning:  #177-D: variable "key"  was declared but never referenced
   	    unsigned char key;
-Source_code\timer.c: 2 warnings, 2 errors
-".\Objects\Final_Project.axf" - 2 Error(s), 2 Warning(s).
+Source_code\timer.c: 3 warnings, 0 errors
+linking...
+Program Size: Code=3872 RO-data=224 RW-data=16 ZI-data=352  
+".\Objects\Final_Project.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -65,10 +65,9 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:2.5.0
       Source file:   Device\Source\ARM\startup_MKL25Z4.s
-      Source file:   Device\Source\system_MKL25Z4.c
       Include file:  Device\Source\system_MKL25Z4.h
-Target not created.
-Build Time Elapsed:  00:00:01
+      Source file:   Device\Source\system_MKL25Z4.c
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
