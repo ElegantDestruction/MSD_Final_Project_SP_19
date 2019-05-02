@@ -6,8 +6,6 @@
 .\objects\timer.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_compiler.h
 .\objects\timer.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include\cmsis_armcc.h
 .\objects\timer.o: .\RTE\Device\MKL25Z128xxx4\system_MKL25Z4.h
-.\objects\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\timer.o: Source_code\timer.h
 .\objects\timer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\timer.o: Source_code\LCD_4bit.h
