@@ -464,12 +464,12 @@ void timer_countdown(void) {
 		}
 		else if (mins == 0 && secs == 0) {
 			hours -= 1;
-			mins = 60;
-			secs = 60;
+			mins = 59;
+			secs = 59;
 		}
 		else if (secs == 0) {
 			mins -= 1;
-			secs = 60;
+			secs = 59;
 		}
 		else{
 			secs -= 1;
